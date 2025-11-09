@@ -1,0 +1,4 @@
+[settings]
+afk_enabled=false
+afk_status=0
+afk_message=Я сейчас AFK, напишите позже!
