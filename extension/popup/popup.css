@@ -1,0 +1,95 @@
+.container {
+  width: 400px;
+  min-height: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.info-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+#tracked-products {
+  margin-top: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.tracked-item {
+  padding: 12px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+}
+
+.tracked-item-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-color);
+}
+
+.tracked-item-price {
+  font-size: 16px;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.tracked-item-change {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.tracked-item-change.up {
+  color: var(--danger-color);
+}
+
+.tracked-item-change.down {
+  color: var(--secondary-color);
+}
+
+select.input {
+  background: white;
+  cursor: pointer;
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid var(--border-color);
+}
+
+#current-page-info {
+  padding: 12px;
+  background: #e8f4f8;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}

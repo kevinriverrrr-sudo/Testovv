@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funpay Price Analyzer</title>
+  <link rel="stylesheet" href="../shared/styles.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">Funpay Price Analyzer</h1>
+      <div id="status-badge"></div>
+    </header>
+
+    <div id="auth-section" class="section" style="display: none;">
+      <div class="section-title">Аутентификация</div>
+      <p class="info-text">Войдите в аккаунт Funpay, чтобы начать работу</p>
+      <button id="auth-button" class="button">Войти через Cookies</button>
+    </div>
+
+    <div id="api-key-section" class="section" style="display: none;">
+      <div class="section-title">API Ключ</div>
+      <div class="form-group">
+        <input type="text" id="api-key-input" class="input" placeholder="Введите API ключ">
+      </div>
+      <button id="save-api-key" class="button">Сохранить ключ</button>
+      <button id="generate-api-key" class="button secondary">Сгенерировать новый</button>
+    </div>
+
+    <div id="main-content" style="display: none;">
+      <div class="tabs">
+        <button class="tab active" data-tab="analysis">Анализ</button>
+        <button class="tab" data-tab="tracking">Отслеживание</button>
+        <button class="tab" data-tab="settings">Настройки</button>
+      </div>
+
+      <div id="tab-content">
+        <div id="analysis-tab" class="tab-content active">
+          <div class="section">
+            <div class="section-title">Анализ цен конкурентов</div>
+            
+            <div id="current-page-info"></div>
+
+            <div id="price-analysis-results" style="display: none;">
+              <div class="stats-grid">
+                <div class="stat-card">
+                  <div class="stat-value" id="min-price">-</div>
+                  <div class="stat-label">Минимальная</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value" id="max-price">-</div>
+                  <div class="stat-label">Максимальная</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value" id="avg-price">-</div>
+                  <div class="stat-label">Средняя</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-value" id="competitor-count">-</div>
+                  <div class="stat-label">Конкурентов</div>
+                </div>
+              </div>
+
+              <div class="price-box" style="margin-top: 16px;">
+                <span class="price-label">Рекомендуемая цена:</span>
+                <span class="price-value recommended" id="recommended-price">-</span>
+              </div>
+
+              <div class="form-group" style="margin-top: 16px;">
+                <label class="label">Стратегия ценообразования:</label>
+                <select id="pricing-strategy" class="input">
+                  <option value="aggressive">Агрессивная (-10%)</option>
+                  <option value="competitive" selected>Конкурентная (-5%)</option>
+                  <option value="safe">Безопасная (медиана)</option>
+                  <option value="premium">Премиум (-2%)</option>
+                </select>
+              </div>
+
+              <button id="analyze-button" class="button" style="width: 100%; margin-top: 12px;">
+                Обновить анализ
+              </button>
+            </div>
+
+            <div id="no-data" class="alert info" style="display: none;">
+              Откройте страницу товара на Funpay для начала анализа
+            </div>
+          </div>
+        </div>
+
+        <div id="tracking-tab" class="tab-content" style="display: none;">
+          <div class="section">
+            <div class="section-title">Отслеживание цен</div>
+            <p class="info-text">Список отслеживаемых товаров и их динамика цен</p>
+            <div id="tracked-products"></div>
+            <button id="add-current-product" class="button secondary" style="width: 100%; margin-top: 12px;">
+              Добавить текущий товар
+            </button>
+          </div>
+        </div>
+
+        <div id="settings-tab" class="tab-content" style="display: none;">
+          <div class="section">
+            <div class="section-title">Настройки</div>
+            
+            <div class="form-group">
+              <label class="label">Интервал обновления (сек):</label>
+              <input type="number" id="update-interval" class="input" value="30" min="10" max="300">
+            </div>
+
+            <div class="form-group">
+              <label class="label">
+                <input type="checkbox" id="auto-analysis"> 
+                Автоматический анализ при открытии страницы
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="label">
+                <input type="checkbox" id="notifications"> 
+                Уведомления об изменении цен
+              </label>
+            </div>
+
+            <button id="save-settings" class="button" style="width: 100%;">Сохранить настройки</button>
+            
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--border-color);">
+            
+            <button id="logout-button" class="button danger" style="width: 100%;">Выйти из аккаунта</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="loading-section" class="loading">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="../shared/api.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
