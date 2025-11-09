@@ -1,0 +1,92 @@
+/* VK Video Downloader - Styles */
+
+.vk-video-download-btn {
+  background-color: #4a69bd;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 8px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  z-index: 100;
+  position: relative;
+}
+
+.vk-video-download-btn:hover {
+  background-color: #3d5aa8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.vk-video-download-btn:active {
+  background-color: #2e4689;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vk-video-download-btn:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.vk-video-download-actions {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Integration with VK's video containers */
+.video_item .vk-video-download-actions,
+.VideoCard .vk-video-download-actions,
+.wall_video_item .vk-video-download-actions {
+  border-top: 1px solid #e1e3e6;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Styles for different VK contexts */
+.im-mess-video .vk-video-download-btn,
+.VideoMessage .vk-video-download-btn {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+/* Animation for button state changes */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.vk-video-download-btn.downloading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .vk-video-download-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .vk-video-download-actions {
+    background: rgba(35, 35, 35, 0.9);
+    border-top-color: #3a3a3a;
+  }
+}

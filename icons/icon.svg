@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#4a69bd" stroke="#3d5aa8" stroke-width="3"/>
+  
+  <!-- Video play symbol (triangle) -->
+  <path d="M 45 35 L 45 93 L 90 64 Z" fill="white" opacity="0.9"/>
+  
+  <!-- Download arrow -->
+  <g transform="translate(75, 75)">
+    <rect x="-3" y="-15" width="6" height="25" fill="white" rx="2"/>
+    <path d="M 0 15 L -12 3 L -5 3 L 0 8 L 5 3 L 12 3 Z" fill="white"/>
+    <rect x="-15" y="15" width="30" height="4" fill="white" rx="2"/>
+  </g>
+  
+  <!-- VK style accent -->
+  <circle cx="64" cy="64" r="56" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+</svg>

@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "VK Video Downloader",
+  "version": "1.0.0",
+  "description": "Скачивайте видео с ВКонтакте легко и быстро",
+  "icons": {
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.vk.com/*",
+    "*://*.vk.ru/*",
+    "*://*.userapi.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.vk.com/*",
+        "*://*.vk.ru/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "VK Video Downloader",
+    "default_popup": "popup.html"
+  }
+}
