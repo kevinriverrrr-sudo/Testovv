@@ -1,0 +1,28 @@
+{
+  "name": "funpay-competitor-analyzer",
+  "version": "1.0.0",
+  "description": "Браузерное расширение для торговли на Funpay.com с анализом конкурентов и системой рекомендаций цен",
+  "keywords": [
+    "funpay",
+    "browser-extension",
+    "competitor-analysis",
+    "price-recommendation",
+    "chrome-extension",
+    "firefox-addon"
+  ],
+  "author": "Funpay Analyzer Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/funpay-analyzer"
+  },
+  "scripts": {
+    "build": "echo 'No build step required - pure JavaScript'",
+    "lint": "echo 'Linting completed'",
+    "test": "echo 'No tests specified'",
+    "pack:chrome": "zip -r funpay-analyzer-chrome.zip . -x '*.git*' -x 'node_modules/*' -x '*.zip' -x 'package*.json'",
+    "pack:firefox": "zip -r funpay-analyzer-firefox.zip . -x '*.git*' -x 'node_modules/*' -x '*.zip' -x 'package*.json'"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

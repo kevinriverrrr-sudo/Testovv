@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Настройки - Funpay Analyzer</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>⚙️ Настройки</h1>
+      <p class="subtitle">Funpay Competitor Analyzer</p>
+    </header>
+
+    <main class="main-content">
+      <section class="settings-section">
+        <h2>Анализ конкурентов</h2>
+        
+        <div class="setting-item">
+          <label for="auto-refresh">
+            <span class="label-text">Автообновление данных</span>
+            <span class="label-description">Автоматически обновлять данные конкурентов</span>
+          </label>
+          <input type="checkbox" id="auto-refresh" class="toggle-switch">
+        </div>
+        
+        <div class="setting-item">
+          <label for="refresh-interval">
+            <span class="label-text">Интервал обновления (минуты)</span>
+            <span class="label-description">Как часто обновлять данные</span>
+          </label>
+          <input type="number" id="refresh-interval" min="1" max="60" value="5" class="input-field">
+        </div>
+        
+        <div class="setting-item">
+          <label for="competitor-count">
+            <span class="label-text">Количество конкурентов для анализа</span>
+            <span class="label-description">Максимум конкурентов в выборке</span>
+          </label>
+          <input type="number" id="competitor-count" min="5" max="100" value="20" class="input-field">
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Рекомендации цен</h2>
+        
+        <div class="setting-item">
+          <label for="strategy">
+            <span class="label-text">Стратегия ценообразования</span>
+            <span class="label-description">Выберите стратегию по умолчанию</span>
+          </label>
+          <select id="strategy" class="select-field">
+            <option value="auto">Автоматическая</option>
+            <option value="aggressive">Агрессивная (ниже минимума)</option>
+            <option value="competitive">Конкурентная (ниже средней)</option>
+            <option value="balanced">Сбалансированная</option>
+            <option value="premium">Премиум (выше средней)</option>
+          </select>
+        </div>
+        
+        <div class="setting-item">
+          <label for="price-adjustment">
+            <span class="label-text">Корректировка цены (%)</span>
+            <span class="label-description">Дополнительная корректировка рекомендуемой цены</span>
+          </label>
+          <input type="range" id="price-adjustment" min="-20" max="20" value="0" class="range-slider">
+          <span id="price-adjustment-value" class="range-value">0%</span>
+        </div>
+        
+        <div class="setting-item">
+          <label for="min-price-threshold">
+            <span class="label-text">Минимальный порог цены (₽)</span>
+            <span class="label-description">Не рекомендовать цену ниже этого значения</span>
+          </label>
+          <input type="number" id="min-price-threshold" min="0" step="0.01" value="0" class="input-field">
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Уведомления</h2>
+        
+        <div class="setting-item">
+          <label for="show-notifications">
+            <span class="label-text">Показывать уведомления</span>
+            <span class="label-description">Уведомления об изменении цен и анализе</span>
+          </label>
+          <input type="checkbox" id="show-notifications" class="toggle-switch" checked>
+        </div>
+        
+        <div class="setting-item">
+          <label for="price-alert">
+            <span class="label-text">Оповещение о снижении цен</span>
+            <span class="label-description">Уведомлять когда конкуренты снижают цены</span>
+          </label>
+          <input type="checkbox" id="price-alert" class="toggle-switch">
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Интерфейс</h2>
+        
+        <div class="setting-item">
+          <label for="button-position">
+            <span class="label-text">Позиция кнопки на сайте</span>
+            <span class="label-description">Где отображать кнопку анализа</span>
+          </label>
+          <select id="button-position" class="select-field">
+            <option value="top-right">Справа вверху</option>
+            <option value="top-left">Слева вверху</option>
+            <option value="bottom-right">Справа внизу</option>
+            <option value="bottom-left">Слева внизу</option>
+          </select>
+        </div>
+        
+        <div class="setting-item">
+          <label for="theme">
+            <span class="label-text">Тема оформления</span>
+            <span class="label-description">Цветовая схема расширения</span>
+          </label>
+          <select id="theme" class="select-field">
+            <option value="purple">Фиолетовая (по умолчанию)</option>
+            <option value="blue">Синяя</option>
+            <option value="green">Зелёная</option>
+            <option value="dark">Тёмная</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Данные и конфиденциальность</h2>
+        
+        <div class="setting-item">
+          <label for="save-history">
+            <span class="label-text">Сохранять историю анализов</span>
+            <span class="label-description">Хранить данные предыдущих анализов</span>
+          </label>
+          <input type="checkbox" id="save-history" class="toggle-switch" checked>
+        </div>
+        
+        <div class="setting-item">
+          <button class="btn btn-danger" id="clear-data-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Очистить все данные
+          </button>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="save-settings-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17 21v-8H7v8M7 3v5h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Сохранить настройки
+        </button>
+        <button class="btn btn-secondary" id="reset-settings-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Сбросить
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Funpay Competitor Analyzer v1.0.0</p>
+    </footer>
+  </div>
+
+  <div class="notification" id="notification"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>

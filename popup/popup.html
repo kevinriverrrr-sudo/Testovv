@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funpay Competitor Analyzer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📊 Funpay Analyzer</h1>
+      <p class="subtitle">Анализ конкурентов и цен</p>
+    </div>
+
+    <div id="auth-section">
+      <div class="auth-status">
+        <div class="status-indicator" id="status-indicator"></div>
+        <span id="auth-status-text">Проверка авторизации...</span>
+      </div>
+      
+      <div id="auth-content">
+        <div class="info-card">
+          <p>Для работы расширения необходимо войти на Funpay.com</p>
+          <ol class="instruction-list">
+            <li>Откройте <a href="https://funpay.com" target="_blank">Funpay.com</a></li>
+            <li>Войдите в свой аккаунт</li>
+            <li>Вернитесь к расширению</li>
+            <li>Нажмите "Проверить авторизацию"</li>
+          </ol>
+        </div>
+        
+        <button class="btn btn-primary" id="check-auth-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Проверить авторизацию
+        </button>
+      </div>
+      
+      <div id="authenticated-content" style="display: none;">
+        <div class="success-card">
+          <div class="success-icon">✓</div>
+          <p>Авторизация успешна!</p>
+          <p class="user-info" id="user-info"></p>
+        </div>
+        
+        <div class="quick-actions">
+          <h3>Быстрые действия</h3>
+          <button class="btn btn-secondary" id="open-funpay-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 3h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Открыть Funpay
+          </button>
+          <button class="btn btn-secondary" id="refresh-data-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Обновить данные
+          </button>
+        </div>
+        
+        <div class="stats-section" id="stats-section" style="display: none;">
+          <h3>Статистика</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-label">Анализов</span>
+              <span class="stat-value" id="analysis-count">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Последний</span>
+              <span class="stat-value small" id="last-analysis">-</span>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btn btn-logout" id="logout-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 17l5-5-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Выйти
+        </button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="#" id="settings-link">Настройки</a>
+      <a href="#" id="help-link">Помощь</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
