@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Настройки - FunPay Pro</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="header">
+      <h1>Настройки FunPay Pro</h1>
+      <p>Настройте расширение под свои нужды</p>
+    </header>
+
+    <main class="main-content">
+      <section class="section">
+        <h2>Автоматизация</h2>
+        <div class="option-item">
+          <div class="option-info">
+            <h3>Автоматическое обновление данных</h3>
+            <p>Периодически обновлять данные о конкурентах и ценах</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="auto-update" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="option-item">
+          <div class="option-info">
+            <h3>Интервал обновления</h3>
+            <p>Как часто обновлять данные (в минутах)</p>
+          </div>
+          <input type="number" id="update-interval" value="15" min="5" max="120" class="input-field">
+        </div>
+
+        <div class="option-item">
+          <div class="option-info">
+            <h3>Автокорректировка цен</h3>
+            <p>Автоматически изменять цены на основе рекомендаций</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="auto-adjust">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Стратегия ценообразования</h2>
+        <div class="option-item">
+          <div class="option-info">
+            <h3>Стратегия</h3>
+            <p>Выберите стратегию для рекомендаций цен</p>
+          </div>
+          <select id="price-strategy" class="select-field">
+            <option value="aggressive">Агрессивная - самые низкие цены</option>
+            <option value="competitive" selected>Конкурентная - оптимальный баланс</option>
+            <option value="premium">Премиум - высокая маржа</option>
+            <option value="average">Средняя - следовать за рынком</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Уведомления</h2>
+        <div class="option-item">
+          <div class="option-info">
+            <h3>Включить уведомления</h3>
+            <p>Получать уведомления об изменениях и рекомендациях</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="notifications" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="option-item">
+          <div class="option-info">
+            <h3>Уведомления об изменении цен</h3>
+            <p>Уведомлять при изменении цен конкурентами</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="price-notifications" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Backend</h2>
+        <div class="option-item">
+          <div class="option-info">
+            <h3>Backend URL</h3>
+            <p>URL сервера для обработки данных</p>
+          </div>
+          <input type="text" id="backend-url" value="http://localhost:3000/api" class="input-field">
+        </div>
+      </section>
+
+      <div class="actions">
+        <button id="save-btn" class="btn btn-primary">Сохранить настройки</button>
+        <button id="reset-btn" class="btn btn-secondary">Сбросить</button>
+      </div>
+
+      <div id="status" class="status"></div>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

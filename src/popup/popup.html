@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunPay Pro</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <h1>FunPay Pro</h1>
+      <p class="subtitle">Анализ и автоматизация</p>
+    </div>
+
+    <div id="auth-section" class="section" style="display: none;">
+      <div class="alert alert-warning">
+        <p>Для использования расширения необходимо авторизоваться на FunPay.com</p>
+        <button id="go-to-funpay" class="btn btn-primary">Перейти на FunPay</button>
+      </div>
+    </div>
+
+    <div id="main-section" class="section">
+      <div class="quick-stats">
+        <div class="stat-card">
+          <div class="stat-value" id="total-products">-</div>
+          <div class="stat-label">Товаров</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="avg-price">-</div>
+          <div class="stat-label">Средняя цена</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="competitors">-</div>
+          <div class="stat-label">Конкурентов</div>
+        </div>
+      </div>
+
+      <div class="actions-grid">
+        <button id="open-dashboard" class="action-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          <span>Dashboard</span>
+        </button>
+
+        <button id="analyze-page" class="action-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span>Анализ страницы</span>
+        </button>
+
+        <button id="update-prices" class="action-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+          </svg>
+          <span>Обновить цены</span>
+        </button>
+
+        <button id="export-data" class="action-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          <span>Экспорт данных</span>
+        </button>
+
+        <button id="settings" class="action-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v6m0 6v6m6-18v6m0 6v6m-12-12h6m6 0h6m-18 6h6m6 0h6"/>
+          </svg>
+          <span>Настройки</span>
+        </button>
+
+        <button id="notifications-toggle" class="action-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+          </svg>
+          <span>Уведомления</span>
+        </button>
+      </div>
+
+      <div class="status-section">
+        <div class="status-item">
+          <span class="status-label">Статус:</span>
+          <span id="status-indicator" class="status-value status-ok">Активен</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Последнее обновление:</span>
+          <span id="last-update" class="status-value">-</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <small>FunPay Pro v1.0.0</small>
+    </div>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

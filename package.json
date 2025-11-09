@@ -1,0 +1,22 @@
+{
+  "name": "funpay-pro-extension",
+  "version": "1.0.0",
+  "description": "Полнофункциональное расширение для анализа и автоматизации торговли на FunPay.com",
+  "scripts": {
+    "backend": "cd backend && npm start",
+    "backend:dev": "cd backend && npm run dev",
+    "backend:install": "cd backend && npm install",
+    "build": "echo 'Extension ready for loading'",
+    "package": "zip -r funpay-pro-extension.zip src/ manifest.json -x '*.map' -x '*.log'"
+  },
+  "keywords": [
+    "funpay",
+    "extension",
+    "trading",
+    "automation",
+    "analytics",
+    "price-analysis"
+  ],
+  "author": "",
+  "license": "MIT"
+}
