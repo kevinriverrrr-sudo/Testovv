@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "FunPay Pro - Анализ и Автоматизация",
+  "version": "1.0.0",
+  "description": "Полнофункциональное расширение для анализа, аналитики и автоматизации торговли на FunPay.com",
+  "icons": {
+    "16": "src/icons/icon16.png",
+    "48": "src/icons/icon48.png",
+    "128": "src/icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "cookies",
+    "notifications",
+    "alarms",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://funpay.com/*",
+    "https://*.funpay.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://funpay.com/*", "https://*.funpay.com/*"],
+      "js": ["src/content/content-script.js"],
+      "css": ["src/content/content-styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "src/icons/icon16.png",
+      "48": "src/icons/icon48.png",
+      "128": "src/icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/dashboard/*", "src/icons/*"],
+      "matches": ["https://funpay.com/*", "https://*.funpay.com/*"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "funpay-pro@extension.local"
+    }
+  }
+}
