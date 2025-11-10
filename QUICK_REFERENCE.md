@@ -18,7 +18,7 @@
 ## 🔧 Quick Settings
 1. Click ⚙️ icon
 2. Paste API key (optional - default provided)
-3. Select model (Gemini Pro recommended)
+3. Select model (Gemini 1.5 Flash recommended)
 4. Adjust temperature (0.0-1.0)
 5. Save
 
@@ -39,7 +39,7 @@ AIzaSyCOecNn-dxdGUrN4sz5Y9AXk-sO4Hn6_Qc
 
 ## 🌐 API Endpoint
 ```
-https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent
+https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent
 ```
 
 ## 🔒 Permissions

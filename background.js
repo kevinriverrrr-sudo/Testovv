@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         
         chrome.storage.local.set({
             xgpt_api_key: 'AIzaSyCOecNn-dxdGUrN4sz5Y9AXk-sO4Hn6_Qc',
-            xgpt_model: 'gemini-pro',
+            xgpt_model: 'gemini-1.5-flash',
             xgpt_temperature: 0.7,
             xgpt_chat_history: []
         });

@@ -1,5 +1,5 @@
 const API_KEY_DEFAULT = 'AIzaSyCOecNn-dxdGUrN4sz5Y9AXk-sO4Hn6_Qc';
-const API_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/';
+const API_ENDPOINT = 'https://generativelanguage.googleapis.com/v1/models/';
 const STORAGE_KEYS = {
     HISTORY: 'xgpt_chat_history',
     API_KEY: 'xgpt_api_key',
@@ -8,7 +8,7 @@ const STORAGE_KEYS = {
 };
 
 let currentApiKey = API_KEY_DEFAULT;
-let currentModel = 'gemini-pro';
+let currentModel = 'gemini-1.5-flash';
 let currentTemperature = 0.7;
 let chatHistory = [];
 let isProcessing = false;
@@ -42,7 +42,7 @@ async function loadSettings() {
         ]);
 
         currentApiKey = result[STORAGE_KEYS.API_KEY] || API_KEY_DEFAULT;
-        currentModel = result[STORAGE_KEYS.MODEL] || 'gemini-pro';
+        currentModel = result[STORAGE_KEYS.MODEL] || 'gemini-1.5-flash';
         currentTemperature = result[STORAGE_KEYS.TEMPERATURE] || 0.7;
         chatHistory = result[STORAGE_KEYS.HISTORY] || [];
 
@@ -211,7 +211,9 @@ async function sendMessage() {
     showTypingIndicator();
 
     try {
+        console.log('Sending message to API...');
         const response = await callGeminiAPI(userMessage);
+        console.log('Response received successfully');
         removeTypingIndicator();
         
         if (response && response.content) {
@@ -245,7 +247,9 @@ async function sendMessage() {
 }
 
 async function callGeminiAPI(message) {
+    console.log(`Calling Gemini API with model: ${currentModel}`);
     const url = `${API_ENDPOINT}${currentModel}:generateContent?key=${currentApiKey}`;
+    console.log(`API URL: ${url.replace(/key=.*/, 'key=***')}`);
     
     const requestBody = {
         contents: [{
@@ -296,10 +300,25 @@ async function callGeminiAPI(message) {
 
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.error?.message || `HTTP error! status: ${response.status}`);
+            console.error('API Error Response:', errorData);
+            
+            let errorMessage = errorData.error?.message || `HTTP error! status: ${response.status}`;
+            
+            if (response.status === 404) {
+                errorMessage = `Модель "${currentModel}" не найдена или недоступна. Пожалуйста, выберите другую модель в настройках.`;
+            } else if (response.status === 400) {
+                errorMessage = `Некорректный запрос к API: ${errorMessage}`;
+            } else if (response.status === 403) {
+                errorMessage = `API ключ недействителен или у вас нет доступа к модели "${currentModel}".`;
+            } else if (response.status === 429) {
+                errorMessage = `Превышен лимит запросов. Пожалуйста, попробуйте позже.`;
+            }
+            
+            throw new Error(errorMessage);
         }
 
         const data = await response.json();
+        console.log('API Response received:', data);
         
         if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
             throw new Error('Invalid API response structure');

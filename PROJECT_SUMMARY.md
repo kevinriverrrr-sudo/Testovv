@@ -7,7 +7,7 @@
 **Status**: ✅ Complete and Production Ready  
 **Manifest**: V3 (Latest Standard)  
 **Target Browsers**: Chrome, Chromium, Edge, Firefox  
-**API**: Google Generative AI (Gemini Pro)  
+**API**: Google Generative AI (Gemini 1.5 Flash)  
 
 ## 🎯 Project Requirements Completion
 
@@ -16,7 +16,7 @@
 | Requirement | Status | Implementation |
 |------------|---------|----------------|
 | Chrome/Chromium/Firefox Extension | ✅ | Manifest V3 with cross-browser support |
-| Google Generative AI Integration | ✅ | Gemini Pro API with pre-configured key |
+| Google Generative AI Integration | ✅ | Gemini 1.5 Flash API with pre-configured key |
 | Popup on Icon Click | ✅ | Action popup with popup.html |
 | Neural Network Query Interface | ✅ | Chat-style input with textarea |
 | AI Response Display | ✅ | Message bubbles with formatting |
@@ -37,7 +37,7 @@
 | Local Storage | ✅ | Chrome Storage API (localStorage compatible) |
 | Error Handling | ✅ | Comprehensive try-catch with user feedback |
 | Request Timeouts | ✅ | 30-second timeout with AbortController |
-| Multiple AI Models | ✅ | Gemini Pro & Gemini Pro Vision support |
+| Multiple AI Models | ✅ | Gemini 1.5 Flash/Flash-8B/Pro & 2.0 Flash support |
 | Cross-browser Compatibility | ✅ | Works on Chrome, Edge, Firefox |
 
 ### ✅ Acceptance Criteria (All Met)

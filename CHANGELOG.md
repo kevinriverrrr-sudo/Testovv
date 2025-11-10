@@ -80,6 +80,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- **[CRITICAL] Fixed Google Generative AI Integration**
+  - Updated API endpoint from deprecated `v1beta` to stable `v1`
+  - Migrated from deprecated model `gemini-pro` to `gemini-1.5-flash`
+  - Updated model selector with current available models:
+    - Gemini 1.5 Flash (Recommended, default)
+    - Gemini 1.5 Flash-8B
+    - Gemini 1.5 Pro
+    - Gemini 2.0 Flash (Experimental)
+  - Enhanced error handling with specific messages for:
+    - Model not found (404)
+    - Invalid requests (400)
+    - API key issues (403)
+    - Rate limiting (429)
+  - Added comprehensive debug logging for API calls
+  - Improved error messages in Russian for better UX
+  - All changes applied to:
+    - `background.js` - default model initialization
+    - `popup.js` - API endpoint, model defaults, error handling
+    - `popup.html` - model selector options
+
 ### Planned Features
 - Context-aware conversations (conversation history in API calls)
 - Code syntax highlighting in responses

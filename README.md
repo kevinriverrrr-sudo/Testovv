@@ -5,10 +5,11 @@
 ## 📋 Features
 
 - **Chrome/Chromium/Firefox Compatible** - Manifest V3 support
-- **Google Generative AI Integration** - Powered by Gemini Pro model
+- **Google Generative AI Integration** - Powered by Gemini 1.5 Flash model
 - **Beautiful UI/UX** - Modern dark theme with smooth animations
 - **Chat History** - Automatically saves and restores conversation history
 - **Customizable Settings** - Configure API key, model, and temperature
+- **Multiple AI Models** - Choose from Gemini 1.5 Flash, Flash-8B, Pro, or 2.0 Flash (Experimental)
 - **Error Handling** - Comprehensive error handling with user-friendly messages
 - **Cross-browser Support** - Works on Chrome, Chromium, Edge, and Firefox
 
@@ -44,7 +45,7 @@ AIzaSyCOecNn-dxdGUrN4sz5Y9AXk-sO4Hn6_Qc
 1. Click the XGPT icon in your browser toolbar
 2. Click the settings icon (⚙️) in the top right
 3. Enter your Google Generative AI API key
-4. Select your preferred model (Gemini Pro recommended)
+4. Select your preferred model (Gemini 1.5 Flash recommended)
 5. Adjust temperature (0.0 - 1.0) for response creativity
 6. Click "Save"
 
