@@ -1,0 +1,65 @@
+{
+  "manifest_version": 3,
+  "name": "FunPay Helper: Smart Deals & Safe Trade",
+  "version": "1.0.0",
+  "description": "Покупай дешевле, продавай быстрее, торгуй безопасно. Price tracking, seller safety scores, auto-responder, and more for FunPay.com",
+  "author": "FunPay Helper Team",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://funpay.com/*",
+        "*://*.funpay.com/*"
+      ],
+      "js": [
+        "utils/storage.js",
+        "utils/api.js",
+        "utils/parser.js",
+        "content/inject.js"
+      ],
+      "css": [
+        "styles/dark-theme.css",
+        "styles/ui-tweaks.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "notifications",
+    "alarms",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://funpay.com/*",
+    "*://*.funpay.com/*"
+  ],
+  "options_page": "options/options.html",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles/*.css",
+        "icons/*.png"
+      ],
+      "matches": [
+        "*://funpay.com/*",
+        "*://*.funpay.com/*"
+      ]
+    }
+  ]
+}

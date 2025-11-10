@@ -1,0 +1,50 @@
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node modules (if using build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+*.crx
+*.zip
+*.xpi
+
+# Temporary files
+*.tmp
+*.log
+.cache/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Extension packaging
+web-ext-artifacts/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Testing
+coverage/
+.nyc_output/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Generated files
+icons/create_icons.sh

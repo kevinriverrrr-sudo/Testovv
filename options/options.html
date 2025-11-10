@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunPay Helper - Настройки</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <div class="header-content">
+        <img src="../icons/icon48.png" alt="FunPay Helper" class="logo">
+        <div class="header-text">
+          <h1>FunPay Helper</h1>
+          <p>Настройки расширения</p>
+        </div>
+      </div>
+    </header>
+
+    <nav class="options-nav">
+      <button class="nav-item active" data-section="general">Общие</button>
+      <button class="nav-item" data-section="templates">Шаблоны</button>
+      <button class="nav-item" data-section="blacklist">Чёрный список</button>
+      <button class="nav-item" data-section="tracker">Отслеживание</button>
+      <button class="nav-item" data-section="advanced">Дополнительно</button>
+    </nav>
+
+    <main class="options-content">
+      <section id="section-general" class="options-section active">
+        <h2>Общие настройки</h2>
+
+        <div class="setting-group">
+          <h3>Внешний вид</h3>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-dark-theme">
+              <span class="setting-label">Тёмная тема</span>
+            </label>
+            <p class="setting-description">Применить тёмную тему оформления для FunPay</p>
+          </div>
+
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-hide-banners">
+              <span class="setting-label">Скрывать баннеры</span>
+            </label>
+            <p class="setting-description">Удалить рекламные баннеры и промо-блоки</p>
+          </div>
+
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-fixed-filters">
+              <span class="setting-label">Фиксированные фильтры</span>
+            </label>
+            <p class="setting-description">Закрепить панель фильтров при прокрутке</p>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h3>Функции</h3>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-quick-stats">
+              <span class="setting-label">Панель быстрой статистики</span>
+            </label>
+            <p class="setting-description">Показывать информационную панель с медианной ценой, онлайн-продавцами и новыми лотами</p>
+          </div>
+
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-seller-score">
+              <span class="setting-label">Оценка продавцов</span>
+            </label>
+            <p class="setting-description">Автоматически рассчитывать и показывать рейтинг доверия продавцов</p>
+          </div>
+
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-auto-responder">
+              <span class="setting-label">Автоответчик</span>
+            </label>
+            <p class="setting-description">Включить быстрый доступ к шаблонам сообщений</p>
+          </div>
+
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-price-tracker">
+              <span class="setting-label">Отслеживание цен</span>
+            </label>
+            <p class="setting-description">Получать уведомления при появлении выгодных предложений</p>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h3>Уведомления</h3>
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-notifications">
+              <span class="setting-label">Push-уведомления</span>
+            </label>
+            <p class="setting-description">Получать уведомления о новых выгодных лотах</p>
+          </div>
+
+          <div class="setting-item">
+            <label>
+              <input type="checkbox" id="setting-sound">
+              <span class="setting-label">Звук уведомлений</span>
+            </label>
+            <p class="setting-description">Воспроизводить звук при получении уведомления</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="save-general">Сохранить настройки</button>
+      </section>
+
+      <section id="section-templates" class="options-section">
+        <h2>Шаблоны сообщений</h2>
+        <p class="section-description">Создайте шаблоны для быстрого ответа. Используйте Ctrl+Shift+R в чате для выбора.</p>
+
+        <div id="templates-list"></div>
+
+        <div class="template-form">
+          <h3>Новый шаблон</h3>
+          <div class="form-group">
+            <label for="template-name">Название</label>
+            <input type="text" id="template-name" placeholder="Например: Приветствие">
+          </div>
+          <div class="form-group">
+            <label for="template-text">Текст</label>
+            <textarea id="template-text" rows="4" placeholder="Текст сообщения..."></textarea>
+          </div>
+          <button class="btn btn-primary" id="add-template">Добавить шаблон</button>
+        </div>
+      </section>
+
+      <section id="section-blacklist" class="options-section">
+        <h2>Чёрный список</h2>
+        <p class="section-description">Продавцы из чёрного списка будут автоматически скрыты.</p>
+
+        <div id="blacklist-items"></div>
+
+        <div class="blacklist-form">
+          <h3>Добавить в чёрный список</h3>
+          <div class="form-group">
+            <label for="blacklist-seller-id">ID продавца</label>
+            <input type="text" id="blacklist-seller-id" placeholder="Например: 12345">
+          </div>
+          <button class="btn btn-primary" id="add-blacklist">Добавить</button>
+        </div>
+
+        <div class="sync-section">
+          <h3>Синхронизация</h3>
+          <p>Синхронизируйте чёрный список между устройствами через облако.</p>
+          <button class="btn btn-secondary" id="sync-blacklist">Синхронизировать</button>
+          <span id="sync-status"></span>
+        </div>
+      </section>
+
+      <section id="section-tracker" class="options-section">
+        <h2>Отслеживание цен</h2>
+        <p class="section-description">Управляйте отслеживаемыми товарами. <span class="premium-badge">Premium: неограниченное количество</span></p>
+
+        <div id="tracker-list"></div>
+
+        <div class="tracker-stats">
+          <p>Использовано: <strong id="tracker-count">0</strong> из <strong id="tracker-limit">3</strong></p>
+          <button class="btn btn-premium" id="upgrade-tracker">Upgrade to Premium</button>
+        </div>
+      </section>
+
+      <section id="section-advanced" class="options-section">
+        <h2>Дополнительные настройки</h2>
+
+        <div class="setting-group">
+          <h3>Данные</h3>
+          <button class="btn btn-secondary" id="export-data">Экспорт настроек</button>
+          <button class="btn btn-secondary" id="import-data">Импорт настроек</button>
+          <button class="btn btn-danger" id="clear-data">Очистить все данные</button>
+        </div>
+
+        <div class="setting-group">
+          <h3>Информация</h3>
+          <div class="info-item">
+            <span>Версия расширения:</span>
+            <strong>1.0.0</strong>
+          </div>
+          <div class="info-item">
+            <span>Репозиторий:</span>
+            <a href="https://github.com/funpay-helper" target="_blank">GitHub</a>
+          </div>
+          <div class="info-item">
+            <span>Лицензия:</span>
+            <strong>Open Source (MIT)</strong>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h3>О расширении</h3>
+          <p>FunPay Helper - полнофункциональное браузерное расширение для улучшения работы с FunPay.com</p>
+          <p>Функции: отслеживание цен, оценка продавцов, автоответчик, графики, экспорт переписок и многое другое.</p>
+          <p><strong>Слоган:</strong> Покупай дешевле, продавай быстрее, торгуй безопасно</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

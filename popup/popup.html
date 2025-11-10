@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FunPay Helper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="popup-header">
+      <img src="../icons/icon48.png" alt="FunPay Helper" class="logo">
+      <h1>FunPay Helper</h1>
+      <p class="tagline">Покупай дешевле, продавай быстрее, торгуй безопасно</p>
+    </div>
+
+    <div class="popup-content">
+      <div class="status-section">
+        <div class="status-item">
+          <span class="status-label">Статус:</span>
+          <span class="status-value" id="extension-status">Активен</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Версия:</span>
+          <span class="status-value">1.0.0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Подписка:</span>
+          <span class="status-value" id="subscription-status">Бесплатная</span>
+        </div>
+      </div>
+
+      <div class="quick-toggles">
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="toggle-dark-theme" checked>
+            <span>Тёмная тема</span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="toggle-quick-stats" checked>
+            <span>Быстрая статистика</span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="toggle-seller-score" checked>
+            <span>Оценка продавцов</span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="toggle-auto-responder" checked>
+            <span>Автоответчик</span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="toggle-price-tracker" checked>
+            <span>Отслеживание цен</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="tracked-items-section">
+        <h3>Отслеживаемые товары</h3>
+        <div id="tracked-items-list">
+          <p class="empty-state">Нет отслеживаемых товаров</p>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <h3>Статистика</h3>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <span class="stat-number" id="stat-saved-lots">0</span>
+            <span class="stat-label">Скрытых лотов</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number" id="stat-blacklist">0</span>
+            <span class="stat-label">В чёрном списке</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number" id="stat-templates">0</span>
+            <span class="stat-label">Шаблонов</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="btn-options" class="btn btn-primary">Настройки</button>
+        <button id="btn-upgrade" class="btn btn-premium">Upgrade to Premium</button>
+      </div>
+
+      <div class="footer">
+        <a href="https://github.com/funpay-helper" target="_blank">GitHub</a>
+        <span>•</span>
+        <a href="#" id="link-support">Поддержка</a>
+        <span>•</span>
+        <a href="#" id="link-donate">Донат</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
