@@ -1,0 +1,38 @@
+{
+  "name": "funpay-helper",
+  "version": "1.0.0",
+  "description": "FunPay Helper: Smart Deals & Safe Trade - Покупай дешевле, продавай быстрее, торгуй безопасно",
+  "author": "FunPay Helper Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/funpay-helper/funpay-helper"
+  },
+  "keywords": [
+    "funpay",
+    "browser-extension",
+    "chrome-extension",
+    "firefox-addon",
+    "price-tracker",
+    "seller-rating",
+    "auto-responder",
+    "dark-theme"
+  ],
+  "scripts": {
+    "build:chrome": "echo 'Building for Chrome...' && cp manifest.json dist/chrome/",
+    "build:firefox": "echo 'Building for Firefox...' && cp manifest_firefox.json dist/firefox/manifest.json",
+    "package:chrome": "cd dist/chrome && zip -r ../../funpay-helper-chrome.zip .",
+    "package:firefox": "cd dist/firefox && zip -r ../../funpay-helper-firefox.xpi .",
+    "lint": "echo 'Linting not configured yet'",
+    "test": "echo 'Tests not configured yet'"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "homepage": "https://github.com/funpay-helper/funpay-helper#readme",
+  "bugs": {
+    "url": "https://github.com/funpay-helper/issues"
+  }
+}
