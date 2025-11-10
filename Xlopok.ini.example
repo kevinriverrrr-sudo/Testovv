@@ -1,0 +1,15 @@
+[settings]
+; Включить сбор льна (true/false)
+flax_enabled=true
+
+; Включить сбор хлопка (true/false)
+cotton_enabled=true
+
+; Задержка между сборами в миллисекундах (500-5000)
+collect_delay=1000
+
+; Радиус поиска ресурсов в метрах (10.0-100.0)
+search_radius=50.0
+
+; Автоматический сбор при запуске (true/false)
+auto_collect=false
