@@ -1,0 +1,71 @@
+Gang Helper - Список файлов проекта
+====================================
+
+Основные файлы:
+--------------
+gang_helper.lua          - Основной скрипт хелпера (363 строки)
+config/gang_config.json  - Конфигурация по умолчанию (136 строк)
+
+Документация:
+-------------
+README.md                - Основная документация пользователя
+INSTALL.md              - Подробная инструкция по установке
+QUICKSTART.md           - Быстрый старт для новичков
+TECHNICAL.md            - Техническая документация для разработчиков
+CHANGELOG.md            - История версий и изменений
+PROJECT_SUMMARY.md      - Сводка проекта и статус реализации
+FILES.txt               - Этот файл (список всех файлов)
+
+Служебные файлы:
+----------------
+.gitignore              - Исключения для Git
+
+Удалённые файлы:
+----------------
+Cc                      - Старый placeholder файл (больше не нужен)
+
+Структура директорий:
+---------------------
+/
+├── gang_helper.lua
+├── config/
+│   └── gang_config.json
+├── README.md
+├── INSTALL.md
+├── QUICKSTART.md
+├── TECHNICAL.md
+├── CHANGELOG.md
+├── PROJECT_SUMMARY.md
+├── FILES.txt
+└── .gitignore
+
+Размеры файлов:
+---------------
+gang_helper.lua         ~13 KB
+gang_config.json        ~4.5 KB
+README.md               ~4.7 KB
+INSTALL.md              ~7.3 KB
+QUICKSTART.md           ~4.2 KB
+TECHNICAL.md            ~11 KB
+CHANGELOG.md            ~3.7 KB
+PROJECT_SUMMARY.md      ~11 KB
+
+Итого: ~60 KB кода и документации
+
+Зависимости (MoonLoader):
+--------------------------
+- mimgui (GUI)
+- encoding (кодировки)
+- jsoncfg (конфигурация)
+- samp.events (события)
+
+Целевая платформа:
+------------------
+- MoonLoader 0.26+
+- SAMP 0.3.7 / 0.3DL
+- Arizona RP сервер
+- Windows 7+
+
+Версия: 1.0.0
+Дата: 2024-11-10
+Автор: cto.new
