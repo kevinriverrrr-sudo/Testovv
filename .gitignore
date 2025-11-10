@@ -1,0 +1,27 @@
+# Logs
+*.log
+moonloader.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Backups
+*.backup
+config/*.backup
+
+# User-specific config (optional)
+# config/gang_config.json
