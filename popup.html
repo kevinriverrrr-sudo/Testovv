@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XGPT - AI Assistant</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>🤖 XGPT</h1>
+                <div class="header-actions">
+                    <button id="clearHistory" class="btn-icon" title="Очистить историю">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                    <button id="settingsBtn" class="btn-icon" title="Настройки">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3m15.364 6.364l-4.243-4.243m-6.364 0L3.636 17.657m12.728 0l-4.243-4.243m-6.364 0L3.636 6.343"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="welcome-message" id="welcomeMessage">
+                <div class="welcome-icon">🚀</div>
+                <h2>Добро пожаловать в XGPT!</h2>
+                <p>Задайте любой вопрос, и я постараюсь помочь</p>
+            </div>
+        </div>
+
+        <div class="status-bar" id="statusBar">
+            <span class="status-text" id="statusText"></span>
+        </div>
+
+        <div class="input-area">
+            <textarea 
+                id="userInput" 
+                placeholder="Введите ваш вопрос..." 
+                rows="3"
+                maxlength="2000"
+            ></textarea>
+            <div class="input-actions">
+                <span class="char-counter" id="charCounter">0/2000</span>
+                <button id="sendBtn" class="btn-send" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span>Отправить</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="settings-modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Настройки</h2>
+                <button id="closeSettings" class="btn-close">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="apiKeyInput">API ключ Google Generative AI:</label>
+                    <input 
+                        type="password" 
+                        id="apiKeyInput" 
+                        placeholder="Введите API ключ..."
+                        value="AIzaSyCOecNn-dxdGUrN4sz5Y9AXk-sO4Hn6_Qc"
+                    >
+                    <small>Ключ хранится локально в вашем браузере</small>
+                </div>
+                <div class="setting-group">
+                    <label for="modelSelect">Модель AI:</label>
+                    <select id="modelSelect">
+                        <option value="gemini-pro">Gemini Pro</option>
+                        <option value="gemini-pro-vision">Gemini Pro Vision</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="temperatureInput">Температура (0.0 - 1.0):</label>
+                    <input 
+                        type="range" 
+                        id="temperatureInput" 
+                        min="0" 
+                        max="100" 
+                        value="70"
+                    >
+                    <span id="temperatureValue">0.7</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveSettings" class="btn-primary">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
