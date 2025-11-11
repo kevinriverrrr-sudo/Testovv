@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeNet VPN - Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0A0A0A;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 32px;
+    }
+
+    .tab {
+      padding: 12px 24px;
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab:hover {
+      color: #fff;
+    }
+
+    .tab.active {
+      color: #667eea;
+      border-bottom-color: #667eea;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .section-description {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .setting-row:last-child {
+      border-bottom: none;
+    }
+
+    .setting-info {
+      flex: 1;
+    }
+
+    .setting-label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .setting-desc {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle-switch.active {
+      background: #667eea;
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .toggle-switch.active::after {
+      transform: translateX(24px);
+    }
+
+    .button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .domain-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .domain-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .domain-name {
+      font-size: 14px;
+    }
+
+    .domain-mode {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: rgba(102, 126, 234, 0.2);
+      color: #667eea;
+      margin-right: 8px;
+    }
+
+    .remove-btn {
+      background: rgba(255, 0, 0, 0.2);
+      border: none;
+      color: #ff6b6b;
+      padding: 4px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .input {
+      flex: 1;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .select {
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .pricing-card:hover {
+      border-color: #667eea;
+      transform: translateY(-4px);
+    }
+
+    .pricing-card.featured {
+      border-color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 16px 0;
+    }
+
+    .price-period {
+      font-size: 18px;
+      color: #888;
+    }
+
+    .features-list {
+      list-style: none;
+      margin: 24px 0;
+      text-align: left;
+    }
+
+    .features-list li {
+      padding: 8px 0;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .features-list li::before {
+      content: '✓ ';
+      color: #00ff00;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .onboarding {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0A0A0A;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .onboarding-content {
+      max-width: 600px;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .onboarding-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .onboarding-description {
+      font-size: 18px;
+      color: #888;
+      margin-bottom: 32px;
+    }
+
+    .onboarding-steps {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .step-dot.active {
+      background: #667eea;
+    }
+  </style>
+</head>
+<body>
+  <div id="onboarding" class="onboarding" style="display: none;">
+    <div class="onboarding-content">
+      <h1 class="onboarding-title" id="onboarding-title">Welcome to HomeNet VPN</h1>
+      <p class="onboarding-description" id="onboarding-description">
+        One click - and you're home. Return to your home internet with a single click.
+      </p>
+      <button class="button" id="onboarding-next">Next</button>
+      <div class="onboarding-steps">
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <div class="logo">🛡️ HomeNet VPN</div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="general">General</button>
+      <button class="tab" data-tab="split-tunnel">Split Tunneling</button>
+      <button class="tab" data-tab="features">Features</button>
+      <button class="tab" data-tab="profiles">VPN Profiles</button>
+      <button class="tab" data-tab="bookmarks">Secret Bookmarks</button>
+      <button class="tab" data-tab="billing">Billing</button>
+      <button class="tab" data-tab="about">About</button>
+    </div>
+
+    <div id="general" class="tab-content active">
+      <div class="section">
+        <h2 class="section-title">Connection Settings</h2>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Auto-connect on startup</div>
+            <div class="setting-desc">Automatically connect to VPN when browser starts</div>
+          </div>
+          <div class="toggle-switch" id="auto-connect-toggle"></div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Kill Switch</div>
+            <div class="setting-desc">Block all traffic if VPN disconnects</div>
+          </div>
+          <div class="toggle-switch active" id="kill-switch-toggle"></div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Smart DNS</div>
+            <div class="setting-desc">Optimize streaming site connections</div>
+          </div>
+          <div class="toggle-switch active" id="smart-dns-toggle"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Appearance</h2>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Theme</div>
+            <div class="setting-desc">Choose your preferred theme</div>
+          </div>
+          <select class="select" id="theme-select">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="auto">Auto</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="split-tunnel" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">Split Tunneling</h2>
+        <p class="section-description">
+          Choose which domains go through VPN and which connect directly
+        </p>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Mode</div>
+          </div>
+          <select class="select" id="split-mode-select">
+            <option value="all-vpn">All traffic through VPN</option>
+            <option value="all-direct">All traffic direct</option>
+            <option value="custom">Custom rules</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <input type="text" class="input" id="domain-input" placeholder="example.com">
+          <select class="select" id="domain-mode-select">
+            <option value="vpn">VPN</option>
+            <option value="direct">Direct</option>
+          </select>
+          <button class="button" id="add-domain-btn">Add Domain</button>
+        </div>
+
+        <button class="button secondary" id="add-banking-btn">Add Common Banking Sites</button>
+
+        <div class="domain-list" id="domain-list"></div>
+      </div>
+    </div>
+
+    <div id="features" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">Advanced Features</h2>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Anti-Captcha</div>
+            <div class="setting-desc">Automatically rotate IP when captcha is detected</div>
+          </div>
+          <div class="toggle-switch active" id="anti-captcha-toggle"></div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">WebRTC Leak Protection</div>
+            <div class="setting-desc">Prevent IP leaks through WebRTC</div>
+          </div>
+          <div class="toggle-switch active" id="webrtc-protection-toggle"></div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Tracker Blocking</div>
+            <div class="setting-desc">Block tracking scripts and ads</div>
+          </div>
+          <div class="toggle-switch active" id="tracker-blocking-toggle"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Passport Feature</h2>
+        <p class="section-description">
+          Scan QR code from your phone to sync your home location settings
+        </p>
+        <button class="button" id="scan-passport-btn">Scan QR Code</button>
+      </div>
+    </div>
+
+    <div id="profiles" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">VPN Profiles</h2>
+        <p class="section-description">
+          Create custom VPN profiles for quick access
+        </p>
+        
+        <div class="input-group">
+          <input type="text" class="input" id="profile-name-input" placeholder="Profile name">
+          <button class="button" id="create-profile-btn">Create Profile</button>
+        </div>
+
+        <div id="profiles-list"></div>
+      </div>
+    </div>
+
+    <div id="bookmarks" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">Secret Bookmarks</h2>
+        <p class="section-description">
+          Bookmarks that are only accessible when VPN is connected
+        </p>
+        
+        <div id="bookmarks-list"></div>
+      </div>
+    </div>
+
+    <div id="billing" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">Choose Your Plan</h2>
+        
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Free</h3>
+            <div class="price">€0</div>
+            <div class="price-period">/month</div>
+            <ul class="features-list">
+              <li>2 GB/month</li>
+              <li>Auto server selection</li>
+              <li>Basic features</li>
+              <li>Static ad banner</li>
+            </ul>
+            <button class="button secondary">Current Plan</button>
+          </div>
+
+          <div class="pricing-card featured">
+            <h3>Premium</h3>
+            <div class="price">€3</div>
+            <div class="price-period">/month</div>
+            <ul class="features-list">
+              <li>Unlimited data</li>
+              <li>All countries</li>
+              <li>Double hop VPN</li>
+              <li>Anti-captcha</li>
+              <li>10 devices</li>
+              <li>Priority support</li>
+            </ul>
+            <button class="button" id="upgrade-premium-btn">Upgrade Now</button>
+          </div>
+
+          <div class="pricing-card">
+            <h3>Lifetime</h3>
+            <div class="price">€60</div>
+            <div class="price-period">one-time</div>
+            <ul class="features-list">
+              <li>All Premium features</li>
+              <li>Lifetime access</li>
+              <li>NFT passport</li>
+              <li>Priority servers</li>
+              <li>Early access to features</li>
+            </ul>
+            <button class="button" id="upgrade-lifetime-btn">Get Lifetime</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="about" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">About HomeNet VPN</h2>
+        <p class="section-description">
+          Version 1.0.0<br>
+          One click - and you're home.
+        </p>
+        
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Open Source</div>
+            <div class="setting-desc">View source code on GitHub</div>
+          </div>
+          <button class="button secondary">View on GitHub</button>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Security Audit</div>
+            <div class="setting-desc">Latest audit by Cure53</div>
+          </div>
+          <button class="button secondary">View Report</button>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-label">Privacy Policy</div>
+            <div class="setting-desc">Read our privacy policy</div>
+          </div>
+          <button class="button secondary">Read Policy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
