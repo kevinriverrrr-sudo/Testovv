@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeNet VPN</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 360px;
+      min-height: 500px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0A0A0A;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    #background-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .shield-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+
+    .shield-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #00ff00;
+      border-radius: 50%;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .settings-btn {
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 4px;
+    }
+
+    .settings-btn:hover {
+      color: #fff;
+    }
+
+    .connection-status {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .status-text {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .server-name {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .server-location {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .connect-button {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 32px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .connect-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .connect-circle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+    }
+
+    .connect-circle.connected {
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      box-shadow: 0 4px 20px rgba(56, 239, 125, 0.4);
+    }
+
+    .connect-circle.connecting {
+      animation: rotate 1s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .action-btn.active {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: #667eea;
+    }
+
+    .server-list {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 16px;
+    }
+
+    .server-item {
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .server-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .server-info {
+      flex: 1;
+    }
+
+    .server-item-name {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .server-item-location {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .server-ping {
+      font-size: 12px;
+      color: #00ff00;
+      font-weight: 600;
+    }
+
+    .ad-banner {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+      margin-top: 16px;
+    }
+
+    .upgrade-link {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .upgrade-link:hover {
+      text-decoration: underline;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="background-canvas"></canvas>
+  
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <div class="shield-icon">
+          🛡️
+          <div class="shield-dot" id="shield-dot"></div>
+        </div>
+        HomeNet VPN
+      </div>
+      <button class="settings-btn" id="settings-btn">⚙️</button>
+    </div>
+
+    <div class="connection-status">
+      <div class="status-text" id="status-text">Disconnected</div>
+      <div class="server-name" id="server-name">Not Connected</div>
+      <div class="server-location" id="server-location"></div>
+    </div>
+
+    <div class="connect-button" id="connect-button">
+      <div class="connect-circle" id="connect-circle">
+        Connect
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Data Used</div>
+        <div class="stat-value" id="data-used">0 MB</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Trackers Blocked</div>
+        <div class="stat-value" id="trackers-blocked">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Connection Time</div>
+        <div class="stat-value" id="connection-time">0m</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Ping</div>
+        <div class="stat-value" id="ping">-- ms</div>
+      </div>
+    </div>
+
+    <div class="quick-actions">
+      <button class="action-btn" id="smart-dns-btn">Smart DNS</button>
+      <button class="action-btn active" id="kill-switch-btn">Kill Switch</button>
+      <button class="action-btn" id="anti-captcha-btn">Anti-Captcha</button>
+    </div>
+
+    <div class="server-list" id="server-list"></div>
+
+    <div class="ad-banner" id="ad-banner">
+      <div>Free: 2GB/month • <a href="#" class="upgrade-link" id="upgrade-link">Upgrade to Premium</a> for unlimited</div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
