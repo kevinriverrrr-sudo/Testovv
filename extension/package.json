@@ -1,0 +1,61 @@
+{
+  "name": "auto-register-form-filler",
+  "version": "1.0.0",
+  "description": "Browser extension for automatically filling registration forms with random data",
+  "main": "manifest.json",
+  "scripts": {
+    "validate": "node -e \"const fs = require('fs'); const manifest = JSON.parse(fs.readFileSync('./manifest.json', 'utf8')); console.log('✓ Manifest valid'); console.log('Name:', manifest.name); console.log('Version:', manifest.version);\"",
+    "test-syntax": "node -c scripts/content.js && node -c scripts/background.js && node -c popup/popup.js && echo '✓ All JS files have valid syntax'",
+    "check": "npm run validate && npm run test-syntax"
+  },
+  "keywords": [
+    "browser-extension",
+    "chrome-extension",
+    "firefox-addon",
+    "form-filler",
+    "auto-fill",
+    "registration",
+    "testing",
+    "manifest-v3"
+  ],
+  "author": "Auto Register Extension Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/auto-register-extension"
+  },
+  "bugs": {
+    "url": "https://github.com/your-repo/auto-register-extension/issues"
+  },
+  "homepage": "https://github.com/your-repo/auto-register-extension#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "extensionManifest": {
+    "manifestVersion": 3,
+    "targetBrowsers": [
+      "Chrome 88+",
+      "Edge 88+",
+      "Firefox 109+",
+      "Opera 74+",
+      "Brave"
+    ],
+    "permissions": [
+      "storage",
+      "activeTab",
+      "scripting"
+    ],
+    "hostPermissions": [
+      "https://panel.rogen.wtf/*"
+    ]
+  },
+  "files": [
+    "manifest.json",
+    "icons/",
+    "scripts/",
+    "popup/",
+    "README.md",
+    "CHANGELOG.md"
+  ]
+}

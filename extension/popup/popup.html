@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Register</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <h1>✨ Auto Register</h1>
+      <p class="subtitle">Fill registration forms instantly</p>
+    </div>
+    
+    <div class="content">
+      <button id="fillFormBtn" class="action-button primary">
+        <span class="button-icon">🎲</span>
+        <span class="button-text">Auto-fill Form</span>
+      </button>
+      
+      <div id="lastDataSection" class="last-data-section hidden">
+        <h3>Last Filled Data:</h3>
+        <div class="data-item">
+          <span class="data-label">Name:</span>
+          <span id="lastName" class="data-value"></span>
+        </div>
+        <div class="data-item">
+          <span class="data-label">Email:</span>
+          <span id="lastEmail" class="data-value"></span>
+        </div>
+        <div class="data-item">
+          <span class="data-label">Password:</span>
+          <span id="lastPassword" class="data-value password-hidden">••••••••</span>
+          <button id="togglePassword" class="toggle-button">👁️</button>
+        </div>
+        <div class="data-item">
+          <span class="data-label">Time:</span>
+          <span id="lastTime" class="data-value"></span>
+        </div>
+      </div>
+      
+      <div id="status" class="status hidden"></div>
+      
+      <div class="info-section">
+        <p class="info-text">
+          Navigate to <strong>panel.rogen.wtf/auth/register</strong> and click the button to auto-fill the registration form.
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>v1.0.0</p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
