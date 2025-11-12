@@ -92,3 +92,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 *.lint
+
+# Browser Extension
+browser-extension/*.zip

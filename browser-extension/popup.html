@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-fill Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Auto-fill Registration</h2>
+            <p class="subtitle">Fill form with random data</p>
+        </div>
+        
+        <button id="autofillBtn" class="autofill-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"></path>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+            </svg>
+            Auto-fill
+        </button>
+        
+        <div id="notification" class="notification"></div>
+        
+        <div id="lastValues" class="last-values">
+            <h3>Last Generated Values:</h3>
+            <div class="value-item">
+                <span class="label">Name:</span>
+                <span id="lastName" class="value">-</span>
+            </div>
+            <div class="value-item">
+                <span class="label">Email:</span>
+                <span id="lastEmail" class="value">-</span>
+            </div>
+            <div class="value-item">
+                <span class="label">Password:</span>
+                <span id="lastPassword" class="value">-</span>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
